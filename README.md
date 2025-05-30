@@ -20,4 +20,5 @@ This project showcases the seamless integration of Python within Power BI to enh
 This approach brings measurable value to logistic operations—helping managers identify late deliveries (with a reduction potential of 25%), monitor category efficiency, and track region-wise bottlenecks with a 30% improvement in visual clarity. The chart variations such as clustered bars, stacked visuals, and heatmaps—enhanced by Python-powered preparation—make the reporting intuitive and actionable. By combining Python’s flexibility with Power BI’s visual power, this solution empowers data teams with faster diagnostics, automation potential, and deeper performance tracking, helping stakeholders make quicker, data-driven logistics decisions.
 
 **OUTPUT**
+![Image](https://github.com/user-attachments/assets/96673b97-fd06-4c7a-9de9-6e5caad6491d)
 
