@@ -1,0 +1,140 @@
+LOGISTICS DASHBOARD PYTHON SCRIPTS
+
+
+
+
+# dataset = pandas.DataFrame(% Ontime Deliveries, PICKUP EFFICIENCY, Airline Linehaul Rate, MONTHYEAR)
+# dataset = dataset.drop_duplicates()
+
+# Paste or type your script code here:
+import pandas as pd
+import matplotlib.pyplot as plt
+
+df = dataset
+
+# Print sample values to inspect the format
+print(df['MONTHYEAR'].head())
+
+# TEMP: Try automatic parsing
+df['MONTHYEAR'] = pd.to_datetime(df['MONTHYEAR'], errors='coerce')
+
+# Drop rows where conversion failed
+df = df.dropna(subset=['MONTHYEAR'])
+
+# Sort the data
+df = df.sort_values('MONTHYEAR')
+
+# Plot
+plt.figure(figsize=(10, 4))
+plt.plot(df['MONTHYEAR'], df['% Ontime Deliveries'], marker='o', color='green')
+plt.title('Delivery Performance Over Time')
+plt.xlabel('Month-Year')
+plt.ylabel('% Ontime Deliveries')
+plt.grid(True)
+plt.tight_layout()
+plt.show()
+
+
+
+
+# dataset = pandas.DataFrame(MONTHYEAR, Delivery performance category)
+# dataset = dataset.drop_duplicates()
+
+# Paste or type your script code here:
+import matplotlib.pyplot as plt
+
+# Group and count category occurrences per month
+df_grouped = dataset.groupby(["MONTHYEAR", "Delivery performance category"]).size().reset_index(name='Count')
+
+# Pivot for stacked bar chart
+df_pivot = df_grouped.pivot(index='MONTHYEAR', columns='Delivery performance category', values='Count').fillna(0)
+
+# Plot
+df_pivot.plot(kind='bar', stacked=True, figsize=(10, 5), colormap='Accent')
+plt.title("Delivery performance category Over Time")
+plt.xlabel("Month-Year")
+plt.ylabel("Number of Deliveries")
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
+
+
+
+
+# dataset = pandas.DataFrame(Location, Delivery performance category)
+# dataset = dataset.drop_duplicates()
+
+# Paste or type your script code here:
+import matplotlib.pyplot as plt
+
+df_grouped = dataset.groupby(['Location', 'Delivery performance category']).size().reset_index(name='Count')
+df_pivot = df_grouped.pivot(index='Location', columns='Delivery performance category', values='Count').fillna(0)
+
+df_pivot.plot(kind='bar', stacked=True, figsize=(10,5), colormap='Set3')
+plt.title('State-wise Delivery performance')
+plt.xlabel('Location')
+plt.ylabel('Number of Deliveries')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
+
+
+
+
+
+# dataset = pandas.DataFrame(Route, Delivery performance category)
+# dataset = dataset.drop_duplicates()
+
+# Paste or type your script code here:
+import matplotlib.pyplot as plt
+import pandas as pd
+
+# Group and pivot the data
+df_grouped = dataset.groupby(['Route', 'Delivery performance category']).size().reset_index(name='Count')
+df_pivot = df_grouped.pivot(index='Route', columns='Delivery performance category', values='Count').fillna(0)
+
+# Plotting
+plt.figure(figsize=(10, 6))
+df_pivot.plot(kind='bar', stacked=True, colormap='Accent', ax=plt.gca())
+
+plt.title('Route-wise Delivery performance')
+plt.xlabel('Route')
+plt.ylabel('Delivery Count')
+plt.xticks(rotation=0)
+plt.tight_layout()
+plt.grid(True)
+plt.show()
+
+
+
+
+
+# dataset = pandas.DataFrame(PICKUP EFFICIENCY, % of Pickups Made in 1 Hour, Route, Location)
+# dataset = dataset.drop_duplicates()
+
+# Paste or type your script code here:
+import matplotlib.pyplot as plt
+
+# Filtered dataset will already reflect the slicer selections
+# Group by Pickup Efficiency and calculate average pickup %
+df_grouped = dataset.groupby('PICKUP EFFICIENCY')['% of Pickups Made in 1 Hour'].mean().reset_index()
+
+# Sort (optional)
+df_grouped = df_grouped.sort_values(by='% of Pickups Made in 1 Hour', ascending=True)
+
+# Plot
+plt.figure(figsize=(8, 4))
+colors = ['mediumseagreen' if val == 'Fast' else 'salmon' for val in df_grouped['PICKUP EFFICIENCY']]
+plt.barh(df_grouped['PICKUP EFFICIENCY'], df_grouped['% of Pickups Made in 1 Hour'], color=colors)
+
+plt.xlabel('Average % of Pickups in 1 Hour')
+plt.title('PICKUP EFFICIENCY (Filtered by Route & Location)')
+plt.xlim(0, 100)
+plt.grid(axis='x', linestyle='--', alpha=0.7)
+plt.tight_layout()
+plt.show()
+
+
+
+
+
