@@ -24,5 +24,6 @@ To explore the full functionality and interactive features of this project, plea
 The PBIX file contains all visualizations, integrated Python scripts, and data transformations that cannot be fully viewed directly on GitHub.
 
 **OUTPUT**
-![Image](https://github.com/user-attachments/assets/96673b97-fd06-4c7a-9de9-6e5caad6491d)
+<img width="1482" height="897" alt="Image" src="https://github.com/user-attachments/assets/64556ef8-827d-47a6-90bf-165516e5711a" />
+
 
